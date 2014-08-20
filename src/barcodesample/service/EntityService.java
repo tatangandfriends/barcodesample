@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,16 +21,28 @@ public class EntityService {
     private EntityManager em;
     private EntityTransaction et;
     
+    
     @PostConstruct
     private void init(){
         this.em = (EntityManager)Persistence.createEntityManagerFactory("BarcodeSamplePU").createEntityManager();
-        this.et = em.getTransaction();
+        this.et = em.getTransaction();   
     }
     
-    private void save(BoomKunana b){
-        et.begin();
+    
+    public void save(){
+        em.flush();
+    }
+    
+    public void save(BoomKunana b){
+        et.begin();        
         BoomKunana merged = em.merge(b);
         et.commit();
+    }
+    
+    public BoomKunana find(String name){
+        Query query = em.createNamedQuery("BoomKunana.findByName");
+        query.setParameter("employeeName", name);
+        return (BoomKunana)query.getSingleResult();
     }
     
 }

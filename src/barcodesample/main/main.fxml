@@ -7,11 +7,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="barcodesample.main.MainPresenter">
+<AnchorPane id="AnchorPane" fx:id="contentPane" prefHeight="404.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="barcodesample.main.MainPresenter">
    <children>
-      <ImageView fx:id="barcodeImage" fitHeight="163.0" fitWidth="221.0" layoutX="333.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="380.0" layoutY="41.0" style="-fx-font-size: 20;" text="the barcode" />
-      <Button fx:id="generateButton" layoutX="58.0" layoutY="85.0" mnemonicParsing="false" onAction="#generate" text="Generate Biatch!" />
+      <ImageView fx:id="barcodeImage" fitHeight="120.0" fitWidth="300.0" layoutX="294.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="382.0" layoutY="41.0" prefHeight="25.0" prefWidth="124.0" style="-fx-font-size: 20;" text="Y' Barcode" />
+      <Button fx:id="generateButton" layoutX="62.0" layoutY="140.0" mnemonicParsing="false" onAction="#generate" text="Generate Biatch!" />
+      <TextField fx:id="textf" layoutX="62.0" layoutY="94.0" prefHeight="22.0" prefWidth="153.0" />
+      <Button fx:id="findButton" layoutX="178.0" layoutY="140.0" mnemonicParsing="false" onAction="#findBarcode" text="Find" />
+      <Label fx:id="employeeNameLabel" layoutX="366.0" layoutY="209.0" prefHeight="28.0" prefWidth="153.0" style="-fx-font-size: 22;" />
+      <Label fx:id="barcodeMessageLabel" layoutX="370.0" layoutY="246.0" prefHeight="26.0" prefWidth="145.0" style="-fx-font-size: 21;" />
+      <Label fx:id="errorLabel" layoutX="41.0" layoutY="66.0" prefHeight="28.0" prefWidth="224.0" style="-fx-text-fill: red;" text="Enter name to generate / name to find" />
+      <Label fx:id="challenger" layoutX="90.0" layoutY="225.0" style="-fx-font-size: 20;" text="Challenge me!" />
    </children>
 </AnchorPane>

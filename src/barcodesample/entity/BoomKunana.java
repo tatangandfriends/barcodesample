@@ -6,54 +6,56 @@
 
 package barcodesample.entity;
 
+import java.io.Serializable;
+import javafx.beans.property.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author Hadouken
  */
 @Entity
-public class BoomKunana {
+@Table(name = "boom_kunana")
+@NamedQueries({
+@NamedQuery(name = "BoomKunana.findAll", query = "SELECT b FROM BoomKunana b"),   
+    @NamedQuery(name = "BoomKunana.findByName", query = "SELECT b FROM BoomKunana b WHERE b.employeeName = :employeeName")})
+public class BoomKunana implements Serializable {
     
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)    
-    private int id;
-    
-    
-    @Column(name = "image_name", unique = false, nullable = false, length = 100)
-    private String imageName;
-     
-    @Column(name = "DATA", unique = false, nullable = false, length = 100000)
-    private byte[] data; 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
-
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-    
+   private StringProperty id;
+   private StringProperty employeeName;
+   
+   public BoomKunana(){
+       id = new SimpleStringProperty();
+       employeeName = new SimpleStringProperty();
+   }
+   
+   
+   public BoomKunana(String name){
+       this.employeeName.set(name);
+   }
+      
+   @Id
+   @Column(name = "id")
+   public String getId(){
+       return this.id.get();
+   }
+   
+   public void setId(String id){
+       this.id.set(id);
+   }
+   
+   @Column(name = "employee_name")
+   public String getEmployeeName(){
+       return this.employeeName.get();
+   }
+   
+   public void setEmployeeName(String name){
+       this.employeeName.set(name);
+   }
+   
 }
